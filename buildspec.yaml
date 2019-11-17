@@ -1,9 +1,14 @@
 version: 0.2
 
 phases:
+  install:
+    runtime-versions:
+      nodejs: 10
   pre_build:
     commands:
       - cd src
+      # Run a security audit across the dependencies
+      - npm audit
       # Install the dependencies
       - npm install
   build:
@@ -20,7 +25,7 @@ phases:
       - aws s3 cp swagger.yaml s3://$S3_BUCKET/swagger.yaml
       # Create and upload a deployment package
       - aws cloudformation package --template-file sam-template.yaml --s3-bucket $S3_BUCKET --output-template-file sam-template-output.yaml
-
 artifacts:
   files:
     - sam-template-output.yaml
+    - config-*.json
