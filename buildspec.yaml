@@ -24,7 +24,7 @@ phases:
       # for "deploying" it to API Gateway
       - aws s3 cp swagger.yaml s3://$S3_BUCKET/swagger.yaml
       # Create and upload a deployment package
-      - aws cloudformation package --template-file sam-template.yaml --s3-bucket $S3_BUCKET --output-template-file sam-template-output.yaml
+      - aws cloudformation package --profile voathnakl --region us-east-1 --template-file sam-template.yaml --s3-bucket $S3_BUCKET --output-template-file sam-template-output.yaml
 artifacts:
   files:
     - sam-template-output.yaml

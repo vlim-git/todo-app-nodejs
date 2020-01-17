@@ -5,7 +5,7 @@ Description: >
 
 Globals:
   Function:
-    Runtime: nodejs8.10
+    Runtime: nodejs10.x
     Timeout: 60
     Tags:
       stage:
@@ -17,6 +17,7 @@ Parameters:
   S3BucketName:
     Type: String
     Description: The name of the S3 bucket in which the Swagger specification can be found.
+    Default: vlim-todo-app-nodejs-bucket
   StageName:
     Type: String
     Default: dev
